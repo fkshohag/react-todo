@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Todo.module.scss';
 import Container from '@material-ui/core/Container';
-import { Button } from '@material-ui/core';
+import { Button, Divider } from '@material-ui/core';
 import TableContainer from '@material-ui/core/TableContainer';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
 import Paper from '@material-ui/core/Paper';
+import Task from '../Task/Task';
 
 const Todo: React.FC = () => (
   <div className={styles.Todo} data-testid="Todo">
@@ -29,14 +30,9 @@ const Todo: React.FC = () => (
           <TableBody>
             <TableRow>
               <TableCell className={styles.ColumnStyle}>
-                <p>sdf</p>
-                <p>sdf</p>
-                <p>sdf</p>
-                <p>sdf</p>
-                <p>sdf</p>
-                <p>sdf</p>
-                <p>sdf</p>
-                <p>sdf</p>
+                <Task></Task>
+                <br></br>
+                <Task></Task>
               </TableCell>
               <TableCell className={styles.ColumnStyle}>SD</TableCell>
               <TableCell className={styles.ColumnStyle}>SD</TableCell>
