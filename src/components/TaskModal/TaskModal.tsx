@@ -5,6 +5,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 
 export interface TaskModalProps {
@@ -29,37 +30,56 @@ const useStyles = makeStyles((theme) => ({
 const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
   const classes = useStyles();
   return (
-  <div className={styles.TaskModal} data-testid="TaskModal">
-    <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      className={classes.modal}
-      open={open}
-      onClose={handleClose}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
-    >
-      <Fade in={open}>
-        <div className={classes.paper}>
-          <form noValidate autoComplete="off">
-            <div>
-              <TextField required id="standard-required" label="Required" defaultValue="Hello World" />
-              <TextField disabled id="standard-disabled" label="Disabled" defaultValue="Hello World" />
-              <TextField
-                id="standard-password-input"
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-              />
-            </div>
-          </form>
-        </div>
-      </Fade>
-    </Modal>
-  </div>
+    <div className={styles.TaskModal} data-testid="TaskModal">
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            <form noValidate autoComplete="off">
+              <div>
+                <TextField
+                  required
+                  label="Title"
+                  variant="outlined"
+                  name="title"
+                  id="custom-css-outlined-input" />
+              </div>
+              <div>
+                <TextField required
+                  label="Description"
+                  variant="outlined"
+                  name="description"
+                  id="custom-css-outlined-input" />
+              </div>
+              <div>
+                <TextField required
+                  label="Assign"
+                  variant="outlined"
+                  name="assign_to"
+                  id="custom-css-outlined-input" />
+              </div>
+              <Button
+              className={styles.sbmt}
+              type="submit"
+              color="secondary"
+              >
+                Add New Task
+              </Button>
+            </form>
+          </div>
+        </Fade>
+      </Modal>
+    </div>
   );
 }
 
