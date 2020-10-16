@@ -7,11 +7,15 @@
       }
       .table {
             border: 1px;
+            column-gap: 1px;
       }
       .buttonAlignment {
-            align-content: flex-end;
-            align-self: center;
-            float: left;
-            text-align: left;
+            align-items: center;
+      }
+      .ColumnStyle {
+            border: 1px solid black;
+      }
+      .textAlign {
+            text-align: center;
       }
 }
