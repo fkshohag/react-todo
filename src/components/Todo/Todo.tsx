@@ -23,12 +23,13 @@ const Todo: React.FC = () => {
   };
 
   return (
+    
     <div className={styles.Todo} data-testid="Todo">
+      <TaskModal open={open} handleClose={handleClose}></TaskModal>
       <Container className={styles.Todo}>
         <div className={styles.buttonAlignment}>
           <Button variant="contained" onClick={handleOpen} color="primary">Add To-do</Button>
           <Button variant="contained" color="secondary">Import Json</Button>
-          <TaskModal open={open} handleClose={handleClose}></TaskModal>
         </div>
         <TableContainer component={Paper}>
           <Table className={styles.table}>
