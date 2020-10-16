@@ -1,3 +1,17 @@
 .Todo{
-      
+      .tableRightBorder {
+            border-width: 0px;
+            border-right-width: 1px;
+            border-color: black;
+            border-style: solid;
+      }
+      .table {
+            border: 1px;
+      }
+      .buttonAlignment {
+            align-content: flex-end;
+            align-self: center;
+            float: left;
+            text-align: left;
+      }
 }
