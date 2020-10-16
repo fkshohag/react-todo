@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Todo.module.scss';
 import Container from '@material-ui/core/Container';
-import { Button, Divider } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import TableContainer from '@material-ui/core/TableContainer';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
