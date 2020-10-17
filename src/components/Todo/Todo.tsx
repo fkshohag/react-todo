@@ -14,6 +14,14 @@ import { environment } from '../../config/environment';
 import axios from 'axios';
 import Task from '../Task/Task';
 import store from '../../store/index';
+import { setTask } from '../../store/redurers/TaskReducer';
+
+interface Task {
+  id: number,
+  title: string,
+  description: string,
+  assign: string
+}
 
 const Todo: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -27,7 +35,10 @@ const Todo: React.FC = () => {
         environment.base_url+'/task',
       );
       setTasks(result.data)
-      console.log(store.getState())
+      result.data.forEach((item:Task) => {
+        store.dispatch(setTask(item))
+      })
+      setTasks(store.getState().tasks)
     }
     fetchData()
   }, []);
