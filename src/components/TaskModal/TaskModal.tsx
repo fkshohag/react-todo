@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './TaskModal.module.scss';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -35,6 +35,20 @@ const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [assign, setAssign] = useState("");
+  const [tasks, setTasks] = useState([
+    {}
+  ]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await axios(
+        environment.base_url+'/task',
+      );
+      setTasks(result.data)
+    }
+    fetchData()
+  }, []);
+
   const handleSubmit = (event:any) => {
     event.preventDefault();
     axios.post(environment.base_url+"/task", {title, description, assign, status}).then(res=> {
