@@ -6,7 +6,8 @@ interface Task {
       id: number,
       title: string,
       description: string,
-      assign: string
+      assign: string,
+      status: string
 }
 
 const TaskReducer = createSlice({
@@ -18,7 +19,8 @@ const TaskReducer = createSlice({
                         id: action.payload.id,
                         title: action.payload.title,
                         description: action.payload.description,
-                        assign: action.payload.assign
+                        assign: action.payload.assign,
+                        status: action.payload.status
                   }
                   state.push(task)
             }

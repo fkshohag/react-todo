@@ -15,12 +15,14 @@ import axios from 'axios';
 import Task from '../Task/Task';
 import store from '../../store/index';
 import { setTask } from '../../store/redurers/TaskReducer';
+import { StatusEnum } from '../../enums/StatusEnum';
 
 interface Task {
   id: number,
   title: string,
   description: string,
-  assign: string
+  assign: string,
+  status: string
 }
 
 const Todo: React.FC = () => {
@@ -51,8 +53,8 @@ const Todo: React.FC = () => {
     setOpen(false);
   };
 
-  const renderTask = (item:any) => {
-    if(item.id) {
+  const renderNewTask = (item:any) => {
+    if(item.id && item.status === StatusEnum.PENDING) {
       return <Task key={item.id} item={item}></Task>
     }
   }
@@ -79,7 +81,7 @@ const Todo: React.FC = () => {
               <TableRow>
                 <TableCell className={styles.ColumnStyle}>
                   {tasks.map((item:any) => {
-                    return renderTask(item)
+                    return renderNewTask(item)
                   })}
                 </TableCell>
                 <TableCell className={styles.ColumnStyle}>SD</TableCell>
