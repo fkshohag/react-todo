@@ -3,11 +3,17 @@ import styles from './Task.module.scss';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-const Task: React.FC = () => (
+export interface TaskProps {
+  item?: any;
+}
+
+const Task: React.FC<TaskProps> = ({ item }) => (
   <div className={styles.Task} data-testid="Task">
     <Card className={styles.card}>
       <CardContent>
-       <h1>Hello Man</h1>
+        <p>{item.title}</p>
+        <p>{item.description}</p>
+        <p>{item.assign}</p>
       </CardContent>
     </Card>
   </div>
