@@ -107,4 +107,4 @@ const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
   );
 }
 
-export default TaskModal;
+export default (TaskModal);

@@ -16,6 +16,7 @@ import Task from '../Task/Task';
 import store from '../../store/index';
 import { setTask } from '../../store/redurers/TaskReducer';
 import { StatusEnum } from '../../enums/StatusEnum';
+import {connect} from "react-redux"
 
 interface Task {
   id: number,
@@ -97,4 +98,10 @@ const Todo: React.FC = () => {
   );
 }
 
-export default Todo;
+function mapStateToProps(state:any) {
+  return {
+    tasks: state.task
+  }
+}
+
+export default  connect(mapStateToProps) (Todo);
