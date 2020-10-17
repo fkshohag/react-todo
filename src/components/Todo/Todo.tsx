@@ -16,7 +16,7 @@ import Task from '../Task/Task';
 import store from '../../store/index';
 import { setTask } from '../../store/redurers/TaskReducer';
 import { StatusEnum } from '../../enums/StatusEnum';
-import {connect} from "react-redux"
+import { useSelector } from "react-redux";
 
 interface Task {
   id: number,
@@ -28,20 +28,16 @@ interface Task {
 
 const Todo: React.FC = () => {
   const [open, setOpen] = React.useState(false);
-  const [tasks, setTasks] = useState([
-    {}
-  ]);
+  const taskList = useSelector((state: { tasks?: any }) => state.tasks);
 
   useEffect(() => {
     async function fetchData() {
       const result = await axios(
         environment.base_url+'/task',
       );
-      setTasks(result.data)
       result.data.forEach((item:Task) => {
         store.dispatch(setTask(item))
       })
-      setTasks(store.getState().tasks)
     }
     fetchData()
   }, []);
@@ -83,7 +79,7 @@ const Todo: React.FC = () => {
             <TableBody>
               <TableRow>
                 <TableCell className={styles.ColumnStyle}>
-                  {tasks.map((item:any) => {
+                  {taskList.map((item:any) => {
                     return renderNewTask(item)
                   })}
                 </TableCell>
@@ -98,10 +94,4 @@ const Todo: React.FC = () => {
   );
 }
 
-function mapStateToProps(state:any) {
-  return {
-    tasks: state.task
-  }
-}
-
-export default  connect(mapStateToProps) (Todo);
+export default (Todo);
