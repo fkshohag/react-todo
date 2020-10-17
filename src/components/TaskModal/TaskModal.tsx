@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './TaskModal.module.scss';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -6,6 +6,8 @@ import Fade from '@material-ui/core/Fade';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import axios from 'axios';
+import { environment } from '../../config/environment';
 
 
 export interface TaskModalProps {
@@ -29,6 +31,15 @@ const useStyles = makeStyles((theme) => ({
 
 const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
   const classes = useStyles();
+  const [status, setStatus] = useState(1);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [assign, setAssign] = useState("");
+  const handleSubmit = (event:any) => {
+    axios.post(environment.base_url+"/task", {title, description, assign, status}).then(res=> {
+      console.log(res)
+    })
+  }
   return (
     <div className={styles.TaskModal} data-testid="TaskModal">
       <Modal
@@ -45,13 +56,15 @@ const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <form noValidate autoComplete="off">
+            <form onSubmit={handleSubmit} noValidate autoComplete="off">
               <div>
                 <TextField
                   required
                   label="Title"
                   variant="outlined"
                   name="title"
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
                   id="custom-css-outlined-input" />
               </div>
               <div>
@@ -59,13 +72,17 @@ const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
                   label="Description"
                   variant="outlined"
                   name="description"
+                  value={description}
+                  onChange={e => setDescription(e.target.value)}
                   id="custom-css-outlined-input" />
               </div>
               <div>
                 <TextField required
                   label="Assign"
                   variant="outlined"
-                  name="assign_to"
+                  name="assign"
+                  value={assign}
+                  onChange={e => setAssign(e.target.value)}
                   id="custom-css-outlined-input" />
               </div>
               <Button
