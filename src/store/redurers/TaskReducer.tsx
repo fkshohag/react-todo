@@ -22,7 +22,7 @@ const TaskReducer = createSlice({
                         assign: action.payload.assign,
                         status: action.payload.status
                   }
-                  state.push(task)
+                  state.unshift(task)
             }
       }
 });
