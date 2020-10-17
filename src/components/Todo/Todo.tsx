@@ -58,6 +58,22 @@ const Todo: React.FC = () => {
     }
   }
 
+  const renderInProgressTask = (item:any) => {
+    if(item.id && item.status === StatusEnum.PROGRESS) {
+      return <div> <Task key={item.id} item={item}></Task> 
+      <br></br>
+      </div>
+    }
+  }
+
+  const renderDoneTask = (item:any) => {
+    if(item.id && item.status === StatusEnum.DONE) {
+      return <div> <Task key={item.id} item={item}></Task> 
+      <br></br>
+      </div>
+    }
+  }
+
   return (
     
     <div className={styles.Todo} data-testid="Todo">
@@ -83,8 +99,16 @@ const Todo: React.FC = () => {
                     return renderNewTask(item)
                   })}
                 </TableCell>
-                <TableCell className={styles.ColumnStyle}>SD</TableCell>
-                <TableCell className={styles.ColumnStyle}>SD</TableCell>
+                <TableCell className={styles.ColumnStyle}>
+                {taskList.map((item:any) => {
+                    return renderInProgressTask(item)
+                  })}
+                </TableCell>
+                <TableCell className={styles.ColumnStyle}>
+                {taskList.map((item:any) => {
+                    return renderDoneTask(item)
+                  })}
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>
