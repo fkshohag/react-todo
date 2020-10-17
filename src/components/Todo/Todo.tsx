@@ -55,7 +55,9 @@ const Todo: React.FC = () => {
 
   const renderNewTask = (item:any) => {
     if(item.id && item.status === StatusEnum.PENDING) {
-      return <Task key={item.id} item={item}></Task>
+      return <div> <Task key={item.id} item={item}></Task> 
+      <br></br>
+      </div>
     }
   }
 

@@ -8,6 +8,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 import { environment } from '../../config/environment';
+import { NewTask } from '../../interface/NewTask';
+import store from '../../store/index';
+import { setTask } from '../../store/redurers/TaskReducer';
 
 
 export interface TaskModalProps {
@@ -39,7 +42,8 @@ const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
   const handleSubmit = (event:any) => {
     event.preventDefault();
     axios.post(environment.base_url+"/task", {title, description, assign, status}).then(res=> {
-      console.log(res)
+      let task:NewTask = res.data
+      store.dispatch(setTask(task))
     })
     event.stopPropagation();
     if(handleClose) {
