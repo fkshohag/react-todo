@@ -42,6 +42,7 @@ const Todo: React.FC = () => {
     }
     fetchData()
   }, []);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -49,6 +50,12 @@ const Todo: React.FC = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const renderTask = (item:any) => {
+    if(item.id) {
+      return <Task key={item.id} item={item}></Task>
+    }
+  }
 
   return (
     
@@ -72,7 +79,7 @@ const Todo: React.FC = () => {
               <TableRow>
                 <TableCell className={styles.ColumnStyle}>
                   {tasks.map((item:any) => {
-                    return <Task key={item.id} item={item}></Task>
+                    return renderTask(item)
                   })}
                 </TableCell>
                 <TableCell className={styles.ColumnStyle}>SD</TableCell>
