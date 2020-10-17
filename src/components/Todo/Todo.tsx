@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'; 
+import React, {useEffect} from 'react'; 
 import styles from './Todo.module.scss';
 import Container from '@material-ui/core/Container';
 import { Button } from '@material-ui/core';
