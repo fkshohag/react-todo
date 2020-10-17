@@ -36,9 +36,14 @@ const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
   const [description, setDescription] = useState("");
   const [assign, setAssign] = useState("");
   const handleSubmit = (event:any) => {
+    event.preventDefault();
     axios.post(environment.base_url+"/task", {title, description, assign, status}).then(res=> {
       console.log(res)
     })
+    event.stopPropagation();
+    if(handleClose) {
+      handleClose()
+    }
   }
   return (
     <div className={styles.TaskModal} data-testid="TaskModal">
@@ -63,7 +68,6 @@ const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
                   label="Title"
                   variant="outlined"
                   name="title"
-                  value={title}
                   onChange={e => setTitle(e.target.value)}
                   id="custom-css-outlined-input" />
               </div>
@@ -72,7 +76,6 @@ const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
                   label="Description"
                   variant="outlined"
                   name="description"
-                  value={description}
                   onChange={e => setDescription(e.target.value)}
                   id="custom-css-outlined-input" />
               </div>
@@ -81,7 +84,6 @@ const TaskModal: React.FC<TaskModalProps> = ({ open, handleClose }) => {
                   label="Assign"
                   variant="outlined"
                   name="assign"
-                  value={assign}
                   onChange={e => setAssign(e.target.value)}
                   id="custom-css-outlined-input" />
               </div>
