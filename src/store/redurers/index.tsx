@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import CounterReducer from "./counter/CounterReducer";
+import TaskReducer from './TaskReducer';
 
 const reducer = combineReducers({
-    counter: CounterReducer
+    counter: TaskReducer
 })
 export default reducer
