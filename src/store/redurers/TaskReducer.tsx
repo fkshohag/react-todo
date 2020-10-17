@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-      id: '',
-      title: '',
-      description: '',
-      assign: ''
+const initialState = [{}]
+
+interface Task {
+      id: number,
+      title: string,
+      description: string,
+      assign: string
 }
 
 const TaskReducer = createSlice({
@@ -12,10 +14,13 @@ const TaskReducer = createSlice({
       initialState: initialState,
       reducers: { 
             setTask: (state, action) => {
-                  state.id = action.payload.id
-                  state.title = action.payload.title
-                  state.description = action.payload.description
-                  state.assign = action.payload.assign
+                  const task: Task = {
+                        id: action.payload.id,
+                        title: action.payload.title,
+                        description: action.payload.description,
+                        assign: action.payload.assign
+                  }
+                  state.push(task)
             }
       }
 });

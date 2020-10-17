@@ -13,6 +13,7 @@ import TaskModal from '../TaskModal/TaskModal';
 import { environment } from '../../config/environment';
 import axios from 'axios';
 import Task from '../Task/Task';
+import store from '../../store/index';
 
 const Todo: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -26,6 +27,7 @@ const Todo: React.FC = () => {
         environment.base_url+'/task',
       );
       setTasks(result.data)
+      console.log(store.getState())
     }
     fetchData()
   }, []);
@@ -58,8 +60,8 @@ const Todo: React.FC = () => {
             <TableBody>
               <TableRow>
                 <TableCell className={styles.ColumnStyle}>
-                  {tasks.map((item) => {
-                    return <Task item={item}></Task>
+                  {tasks.map((item:any) => {
+                    return <Task key={item.id} item={item}></Task>
                   })}
                 </TableCell>
                 <TableCell className={styles.ColumnStyle}>SD</TableCell>
