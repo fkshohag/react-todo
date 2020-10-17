@@ -12,7 +12,10 @@ const TaskReducer = createSlice({
       initialState: initialState,
       reducers: { 
             setTask: (state, action) => {
- 
+                  state.id = action.payload.id
+                  state.title = action.payload.title
+                  state.description = action.payload.description
+                  state.assign = action.payload.assign
             }
       }
 });
